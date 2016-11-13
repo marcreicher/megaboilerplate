@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = ({ store }) => (
     <div>
-        This is my foote
+        This is my logi
     </div>
 );
 

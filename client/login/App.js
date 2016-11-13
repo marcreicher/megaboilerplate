@@ -1,11 +1,9 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import AppRouter from './AppRouter'; 
-
-if (module.hot) module.hot.accept();
+import AppRouter from './AppRouter';
 
 const App = ({ store }) => (
-    <Provider store={store}>
+    <Provider store={ store }>
         <AppRouter />
     </Provider>
 );

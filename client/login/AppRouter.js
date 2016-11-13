@@ -9,7 +9,7 @@ import Footer from './components/Footer';
 // colocate the entire config).
 render((
     <Router history={ browserHistory }>
-        <Route path="main" component={ Header }>
+        <Route path="login" component={ Header }>
             <Route path="about" component={ Footer } />
         </Route>
     </Router>

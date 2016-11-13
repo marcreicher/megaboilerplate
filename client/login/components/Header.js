@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = ({ children }) => (
     <div>
-        This is my hea
+        This is my login head
         {children}
     </div>
 );

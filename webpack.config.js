@@ -1,10 +1,13 @@
-const webpack = require('webpack');
+var webpack = require('webpack');
 
 module.exports = {
-    entry: './client/mainApp/AppRouter',
+    entry: {
+        mainApp: './client/mainApp/AppRouter',
+        login: './client/login/AppRouter'
+    },
     output: {
-        path: './bin',
-        filename: 'bundle.js',
+        path: './assets',
+        filename: '[name].bundle.js',
     },
     module: {
         loaders: [{
