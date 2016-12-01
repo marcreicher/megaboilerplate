@@ -8,7 +8,9 @@
   },
   "scripts": {
     "test": "npm test",
-    "start": "node server.js"
+    "start": "nodemon server.js",
+    "bundle": "webpack-dev-server --content-base bin/ --inline --hot"
+
   },
   "repository": {
     "type": "git",
