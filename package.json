@@ -10,7 +10,6 @@
     "test": "npm test",
     "start": "nodemon server.js",
     "bundle": "webpack-dev-server --content-base bin/ --inline --hot"
-
   },
   "repository": {
     "type": "git",
@@ -37,6 +36,7 @@
     "mongoose": "^4.6.7",
     "pug": "^2.0.0-beta6",
     "react": "^15.3.2",
+    "react-bootstrap": "^0.30.7",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
     "react-router": "^3.0.0",
