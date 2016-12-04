@@ -17,7 +17,7 @@ $ npm start
 In yet another terminal tab run:
 
 ```sh
-$ npm run build
+$ npm run bundle
 ```
 
 This is the style guide we are following:
