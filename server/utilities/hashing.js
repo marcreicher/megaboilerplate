@@ -1,3 +1,5 @@
+'use strict';
+
 var bcrypt = require('bcrypt'),
     crypto = require('crypto'),
     SALT_ROUNDS = 10;
@@ -7,7 +9,7 @@ module.exports.generateSalt = function(callback) {
         if (err) {
             return callback(err);
         }
-        callback(null, salt)
+        callback(null, salt);
     });
 };
 
@@ -25,12 +27,12 @@ module.exports.compareHash = function(preHashedPassword, databasePassword, callb
         if(err) {
             return callback(err);
         } else if (!res) {
-            return callback({message: 'invalid credentials'})
+            return callback({message: 'invalid credentials'});
         }
         callback(null);
-    })
-}
+    });
+};
 
 module.exports.createSHA512Hash = function(string, callback) {
     return callback(null, crypto.createHash('sha512').update(string).digest('base64'));
-}
+};

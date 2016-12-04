@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express'),
     router = express.Router(),
     User = require('../database/schema').User,
@@ -17,7 +19,7 @@ router.post('/login', function(req, res) {
                 if(err) {
                     return callback(err);
                 } else if (!user) {
-                    return callback({message: 'user does not exist'})
+                    return callback({message: 'user does not exist'});
                 }
                 callback(null, user);
             });
@@ -27,21 +29,21 @@ router.post('/login', function(req, res) {
         }],
         decryptDatabasePassword: ['findUser', function(results, callback) {
             var databasePassword = results.findUser.password;
-            encryptionUtilities.decrypt(databasePassword, globalPepper, callback)
+            encryptionUtilities.decrypt(databasePassword, globalPepper, callback);
         }],
         performFinalHashAndCompare: ['performInitialHash', 'decryptDatabasePassword', function(results, callback) {
             var decryptedDatabasePassword = results.decryptDatabasePassword,
                 initiallyHashedPassword = results.performInitialHash;
 
-            hashingUtilities.compareHash(initiallyHashedPassword, decryptedDatabasePassword, callback)
+            hashingUtilities.compareHash(initiallyHashedPassword, decryptedDatabasePassword, callback);
         }]
     }, function finished(err, results) {
         if(err) {
-            return res.status(500).json({error: err})
+            return res.status(500).json({error: err});
         }
         res.status(200).json(results.findUser);
-    })
-})
+    });
+});
 
 
 router.post('/signup', function(req, res) {
@@ -54,7 +56,7 @@ router.post('/signup', function(req, res) {
                 if(err) {
                     return callback(err);
                 } else if (user) {
-                    return callback({message: 'user already exists'})
+                    return callback({message: 'user already exists'});
                 }
                 callback(null);
             });
@@ -68,7 +70,7 @@ router.post('/signup', function(req, res) {
         performFinalHash: ['generateSalt', 'performInitialHash', function(results, callback) {
             var salt = results.generateSalt,
                 initiallyHashedPassword = results.performInitialHash;
-            hashingUtilities.hashPassword(initiallyHashedPassword, salt, callback)
+            hashingUtilities.hashPassword(initiallyHashedPassword, salt, callback);
         }],
         applyPepper: ['performFinalHash', function(results, callback) {
             var hashedPassword = results.performFinalHash;
@@ -85,17 +87,16 @@ router.post('/signup', function(req, res) {
                 if(err) {
                     return callback(err);
                 }
-                return callback(null, user); 
+                return callback(null, user);
             });
-        }],
+        }]
     }, function finished(err, results) {
         if(err) {
-            return res.status(500).json({error: err})
+            return res.status(500).json({error: err});
         }
         res.status(200).json(results.saveUser);
-    })
-})
-
+    });
+});
 
 module.exports = router;
 
