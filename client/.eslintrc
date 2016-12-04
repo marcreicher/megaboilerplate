@@ -24,17 +24,20 @@
 
         // code arrangement matter
         "no-use-before-define": [ 2, { "functions": false } ],
-        
+
         // make it meaningful
         "prefer-const": 1,
-        
+
         // keep it simple
         "complexity": [ 1, 5 ],
-        
+
         // react
         "react/prefer-es6-class": 0,
         "react/jsx-filename-extension": 0,
-        "react/jsx-curly-spacing": [ 2, "always" ],
+        // "react/jsx-curly-spacing": [ 2, "always" ],
         "react/jsx-indent": [ 2, 4 ]
+
+        // removing trailing comma
+        "comma-dangle": ["error", "never"]
     }
 }
