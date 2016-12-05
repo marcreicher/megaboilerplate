@@ -3,12 +3,15 @@ var async = require('async');
 var app = express();
 var config = require('config');
 var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 
 var mainRouter = require('./www/routes/mainApp');
-var loginRouter = require('./www/routes/login');
+var wwwLoginRouter = require('./www/routes/login');
+var apiLoginRouter = require('./server/routes/login');
 
 app.use(express.static('assets'));
 app.set('view engine', 'pug');
+app.use(bodyParser.json());
 
 // app.get('/about', function (req, res) {
 //   // res.render('index', { title: 'Hey', message: 'Hello there!'});
@@ -20,11 +23,12 @@ app.set('view engine', 'pug');
 // });
 
 app.use('/main', mainRouter);
-app.use('/login', loginRouter);
+app.use('/login', wwwLoginRouter);
+app.use('/api', apiLoginRouter);
 
 async.series([
     function connectToDatabase(callback) {
-        mongoose.connect('mongodb://localhost/boilerplatedev');
+        mongoose.connect(config.get('dbConfig.uri'));
         mongoose.connection.on('open', function() {
             console.log('connected to database');
             callback(null);
